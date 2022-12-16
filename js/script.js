@@ -26,6 +26,9 @@ function Scorecounter() {
   }
 }
 
+//Music
+const music = new Audio("/assets/game_music.wav");
+
 function move_player_and_limit_to_playground() {
   console.log(parseInt(spieler.style.right));
   // Check if moving right would put the player outside the playground
@@ -111,6 +114,7 @@ function game_over_alert() {
 }
 
 function loop() {
+  music.play();
   move_player_and_limit_to_playground();
   baeume_erscheinen();
   skifahrer_erscheinen();
@@ -124,7 +128,5 @@ function loop() {
 window.requestAnimationFrame(loop);
 
 // TODO
-// character can't leave box, but still able to move right
-// restart screen
 // leaderboard
-// music and sfx
+// sfx at death
