@@ -1,6 +1,6 @@
 // Spielcharakter und Gegner
-const spieler = document.querySelector(".player");
-const playground = document.querySelector(".playground");
+var spieler = document.querySelector(".player");
+var playground = document.querySelector(".playground");
 
 //Startposition vom Spieler
 spieler.style.left = "320px";
@@ -12,11 +12,11 @@ let skitimer = new Timer(200);
 const scorecounttimer = new Timer(50);
 
 //Scorecounter
-const punkteAnzeige = document.querySelector(".punkte");
+var punkteAnzeige = document.querySelector(".punkte");
 let score = 0;
 
 // Grösse der Box
-const width = 660;
+const width = 700;
 const height = 576;
 
 function Scorecounter() {
@@ -41,16 +41,16 @@ function move_player_and_limit_to_playground() {
 function baeume_erscheinen() {
   if (timer.ready()) {
     // Image element is created
-    const baumbild = document.createElement("img");
+    var baumbild = document.createElement("img");
     baumbild.setAttribute("src", "/assets/tree.png");
     baumbild.classList.add("baum");
 
     // Generate a random number between 0 and the width of the box
-    let x = Math.random() * width;
+    var x = Math.random() * width;
     baumbild.style.left = x + "px";
 
     // Initial height-position of baeume
-    baumbild.style.top = "550px";
+    baumbild.style.top = "578px";
     baumbild.style.width = "80px";
     baumbild.style.height = "80px";
     //img.style.backgroundColor = white;
@@ -58,8 +58,8 @@ function baeume_erscheinen() {
     // Add the img element to the playground
     playground.appendChild(baumbild);
 
-    const baeume = document.querySelectorAll(".baum");
-    for (const baum of baeume) {
+    var baeume = document.querySelectorAll(".baum");
+    for (var baum of baeume) {
       baum.style.top = parseInt(baum.style.top) - 60 + "px";
       if (parseInt(baum.style.top) < 10) {
         baum.parentNode.removeChild(baum);
@@ -71,23 +71,23 @@ function baeume_erscheinen() {
 function skifahrer_erscheinen() {
   if (skitimer.ready()) {
     // Image element is created
-    const skiimg = document.createElement("img");
+    var skiimg = document.createElement("img");
     skiimg.setAttribute("src", "/assets/dark_skier.png");
     skiimg.classList.add("skier");
 
     // Generate a random number between 0 and the width of the box
-    let x = Math.random() * width;
+    var x = Math.random() * width;
     skiimg.style.left = x + "px";
 
     // Initial position and size of skiers
-    skiimg.style.top = "535px";
+    skiimg.style.top = "578px";
     skiimg.style.width = "40px";
     skiimg.style.height = "80px";
 
     playground.appendChild(skiimg);
 
-    const skiers = document.querySelectorAll(".skier");
-    for (const skier of skiers) {
+    var skiers = document.querySelectorAll(".skier");
+    for (var skier of skiers) {
       skier.style.top = parseInt(skier.style.top) - 40 + "px";
       if (parseInt(skier.style.top) < 10) {
         skier.parentNode.removeChild(skier);
@@ -97,16 +97,18 @@ function skifahrer_erscheinen() {
 }
 
 function game_over_baumkollision() {
-  const baeume = document.querySelectorAll(".baum");
+  var baeume = document.querySelectorAll(".baum");
   if (anyCollision(spieler, baeume)) {
-    window.location.href = "gameover.html";
+    alert("Game over! Please reload page.");
+    return;
   }
 }
 
 function game_over_alert() {
-  const skier = document.querySelectorAll(".skier");
-  if (anyCollision(spieler, skier)) {
-    window.location.href = "gameover.html";
+  var skifahrer = document.querySelectorAll(".skifahrer");
+  if (anyCollision(spieler, skifahrer)) {
+    alert("Game over! Please reload page.");
+    return;
   }
 }
 
